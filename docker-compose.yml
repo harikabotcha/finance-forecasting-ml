@@ -1,0 +1,48 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: forecast-api
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=production
+      - DEBUG=false
+      - LOG_LEVEL=INFO
+      - DATABASE_URL=postgresql://forecast_user:forecast_pass@db:5432/forecast_db
+      - DATA_RAW_PATH=data/raw
+      - DATA_PROCESSED_PATH=data/processed
+      - MODEL_ARTIFACTS_PATH=data/models
+    volumes:
+      - app_data:/app/data
+      - app_logs:/app/logs
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: postgres:15-alpine
+    container_name: forecast-db
+    environment:
+      - POSTGRES_USER=forecast_user
+      - POSTGRES_PASSWORD=forecast_pass
+      - POSTGRES_DB=forecast_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forecast_user -d forecast_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  app_data:
+  app_logs:
+  postgres_data:

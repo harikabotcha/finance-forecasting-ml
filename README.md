@@ -38,14 +38,14 @@ flowchart LR
 
 ## Features
 
-- **End-to-end data pipeline** — ingestion, validation, preprocessing, and feature engineering
-- **Three forecasting models** — SARIMA, Prophet, and XGBoost with automatic comparison
-- **Weighted ensemble** — combines model predictions using inverse-RMSE weighting
-- **Feature engineering** — lag features, rolling statistics, calendar indicators, YoY changes
-- **FastAPI REST API** — predict, list models, health checks with auto-generated docs
-- **Docker + Compose** — one-command deployment with PostgreSQL
-- **CI/CD** — GitHub Actions for testing, linting, and Docker builds
-- **Comprehensive tests** — pytest with coverage reporting
+- **End-to-end data pipeline** - ingestion, validation, preprocessing, and feature engineering
+- **Three forecasting models** - SARIMA, Prophet, and XGBoost with automatic comparison
+- **Weighted ensemble** - combines model predictions using inverse-RMSE weighting
+- **Feature engineering** - lag features, rolling statistics, calendar indicators, YoY changes
+- **FastAPI REST API** - predict, list models, health checks with auto-generated docs
+- **Docker + Compose** -one-command deployment with PostgreSQL
+- **CI/CD** - GitHub Actions for testing, linting, and Docker builds
+- **Comprehensive tests** - pytest with coverage reporting
 
 ## Quick Start
 
